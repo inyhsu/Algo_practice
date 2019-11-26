@@ -11,7 +11,7 @@ function harmlessRansomNote( noteText, magazineText ) {
 
     for(let i = 0; i < magazineTextArray.length; i ++) {
         var char = magazineTextArray[i];
-        if(!magazineTextArray[char]){
+        if(!magazineTextObj[char]){
             magazineTextObj[char] = 0;
         }
 
