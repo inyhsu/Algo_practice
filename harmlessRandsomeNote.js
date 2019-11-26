@@ -1,21 +1,13 @@
 // Find out what noteText need to be find
-    // split text into array and count how many times each appear and saved as Object
-// Do the same thing with magazineText and compare if noteText appears within magazineTextObj and appearance times is equal or less
+    // split text into array 
+// Do the same thing with magazineText and save magazineText into Obj and how many times 
+// and compare if noteText appears within magazineTextObj and appearance times is equal or less
 
 function harmlessRansomNote( noteText, magazineText ) {
     var noteTextArray = noteText.split(' ');
     var magazineTextArray = magazineText.split(' ');
-    var noteTextObj = {};
     var magazineTextObj = {};
-
-    for(let i = 0; i < noteTextArray.length; i ++) {
-        var char = noteTextArray[i];
-        if(!noteTextObj[char]){
-            noteTextObj[char] = 0;
-        }
-
-        noteTextObj[char] ++
-    }
+    var result = true;
 
     for(let i = 0; i < magazineTextArray.length; i ++) {
         var char = magazineTextArray[i];
@@ -26,13 +18,15 @@ function harmlessRansomNote( noteText, magazineText ) {
         magazineTextObj[char] ++
     }
     
-    for(let keyNote in noteTextObj){
-        for(let keyMag in magazineTextObj) {
-            if(keyNote === keyMag && noteTextObj[keyNote] <= magazineTextObj[keyMag]){
-                return true
-            }
+    for(let i = 0; i < noteTextArray.length; i++) {
+        var char = noteTextArray[i];
+        if(magazineTextObj[char]){
+            magazineTextObj[char] --;
+            if(magazineTextObj[char] < 0) result = false;
         }
+        else result = false
     }
 
-    return false
+
+    return result;
 }
